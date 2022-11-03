@@ -5,7 +5,10 @@
 body {
     background-color: rgb(217, 251, 252);
     font-family: Georgia, 'Times New Roman', Times, serif;
-   
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
 }
 
 
@@ -14,6 +17,20 @@ h1 {
 
 }
 
+.zip-input {
+    display: flex;
+    width: 40vw;
+}
+.zip-input input {
+    width: 60%;
 
+}
+.zip-input button {
+    width: 40%;
+    
+}
 
+.beer-buddies {
+    font-family: 
+}
 
