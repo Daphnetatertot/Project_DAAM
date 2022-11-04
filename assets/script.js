@@ -20,4 +20,4 @@ var getBreweries = function (zipcode){
         })
 }
 
-$("button").on(('click', getBreweries));
+$("button").on('click', getBreweries);
