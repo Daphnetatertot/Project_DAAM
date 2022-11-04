@@ -21,16 +21,22 @@ h1 {
     display: flex;
     width: 40vw;
 }
-.zip-input input {
-    width: 60%;
 
-}
 .zip-input button {
     width: 40%;
     
 }
 
 .beer-buddies {
-    font-family: 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    font-weight: bolder;
+    color: darkred;
 }
 
+.find-breweries {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    border-color: darkred;
+    border-width: 10px;
+}
