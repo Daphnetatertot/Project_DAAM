@@ -19,12 +19,32 @@ var getBreweries = function (zipcode){
             if (response.ok) {
                 response.json().then(function (data){
                     console.log(data);
-                    console.log(data[0].name);
+                    console.log(data.length);
+                    if (data.length == 0){
+                        getZipInfo(zipcode);
+                    }
+                    //console.log(data[0].name);
                     displayBreweries(data[0]);
+                    getZipInfo(zipcode);
                 });
             }
         })
 }
+
+var getBreweryByState = function (state) {
+    console.log(state);
+    var stateBrewerySearchApiUrl = 'https://api.openbrewerydb.org/breweries?by_state=' + state;
+    fetch(stateBrewerySearchApiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data[0]);
+                    displayBreweries(data[0]);
+                })
+            }
+        })
+}
+
 
 var breweryResults = $("body").append("<div>");
 
@@ -35,12 +55,20 @@ var displayBreweries = function (brewData) {
     breweryName.html(brewData.name);
 }
 
-//get zip from IP
-//get IP
-var getIp = function () {
-    var getIpApiUrl = 'https://api.ipify.org?format=jsonp&callback=getIP';
-
-};
+//get state from IP
+var getZipInfo = function (zipcode) {
+    var getZipApiUrl = 'http://api.zippopotam.us/us/' + zipcode;
+    fetch(getZipApiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data.places[0].state);
+                    var stateResult = data.places[0].state;
+                    getBreweryByState(stateResult);
+                })
+            }
+        })
+}
 
 
 
