@@ -19,6 +19,26 @@ nav {
 
 .logo {
     color: #000;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    font-style: italic;
+    padding: 0 2rem;
+
+}
+
+
+h1{
+
+
+text-decoration: none;
+    color:#000;
+    padding: 0 1.5rem;
+
+}
+
+
+p {
+    color: #000;
     font-size: 1.5rem;
     font-weight: bold;
     font-style: italic;
@@ -43,7 +63,7 @@ nav a {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 95vh;
-    padding: 1rem calc((100vw-1300px) / 2);
+    padding: 1rem calc((100vw-1200px) / 2);
 
 
 }
@@ -74,7 +94,7 @@ nav a {
 
 
 button {
-    padding: 1rem 3rem;
+    padding: 25em 25em;
     font-size: 1rem;
     border: none;
     color: #e0ae55;
