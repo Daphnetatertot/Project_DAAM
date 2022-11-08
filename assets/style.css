@@ -53,6 +53,14 @@ nav a {
 
 }
 
+.headings {
+
+    color: deepskyblue;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
 
 .hero {
     background: #e0ae55;
@@ -83,6 +91,7 @@ nav a {
     margin-bottom: 1rem;
     font-size: 3rem;
 }
+
 
 
 .column-left p {
@@ -124,8 +133,5 @@ button:hover {
         grid-template-columns: 1fr;
     }
 }
-
-
-
 
 
