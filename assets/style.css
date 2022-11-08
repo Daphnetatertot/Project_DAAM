@@ -3,12 +3,12 @@
     margin: 0;
     padding: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+    
 }
 
 nav {
     height: 80px;
-    background: #e0ae55;
+    background: turquoise;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,7 +21,6 @@ nav {
     color: #000;
     font-size: 2.5rem;
     font-weight: bolder;
-    font-style: italic;
     padding: 0 2rem;
 
 }
@@ -63,7 +62,7 @@ nav a {
 
 
 .hero {
-    background: #e0ae55;
+    background: turquoise;
 }
 
 
@@ -106,10 +105,11 @@ button {
     padding: 2.5rem 3rem;
     font-size: 1rem;
     border: none;
-    color: #e0ae55;
+    color: turquoise;
     background: #000;
     cursor: pointer;
     border-radius: 50px;
+    font-weight: bolder;
 
 }
 
@@ -134,4 +134,27 @@ button:hover {
     }
 }
 
+.hero-image {
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    
+    
+
+}
+
+.zip-button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.local-beer {
+    font-size: 32px;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+}
 

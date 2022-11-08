@@ -13,9 +13,9 @@
     <nav>
         <div class="logo">Beer Buddy</div>
         <div class="nav-items">
-            <a href="/">Home</a>
-            <a href="/">About</a>
-            <a href="/">Contact</a>
+            <a class="zip-button" href="file:///Users/work/Documents/miniproject/Project_DAAM/index.html">Home</a>
+            <a class="zip-button" href="/">About</a>
+            <a class="zip-button" href="/">Contact</a>
         </div>
     </nav>
     <section class="hero">
@@ -24,12 +24,15 @@
             <h1>The Best Beer Finder</h1>
             <div>
 
-                <p>Enter zip code to enjoy a cold beer from your area!</p>
-                <button> Enter Zip Code</button>
-            </div>
+                <p class="local-beer">Local Beer, A Click Away</p>
+                <input class="input" type="number" placeholder=" ZipCode">
+                <div class="notification is-primary" id="brewery-results"></div>
+                <button id="zip-button"> Submit </button>
+                  </div>
+        
             <div class="column-right">
-                <img src="./images/beer.jpg" alt="illustration" class="hero-image" />
-            </div>
+                <img src="./images/Beer bottles.png" alt="illustration" class="hero-image" />
+            
 
         </div>
 
