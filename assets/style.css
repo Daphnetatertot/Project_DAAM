@@ -8,7 +8,7 @@
 
 nav {
     height: 80px;
-    background: turquoise;
+    background: darkcyan;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,17 +21,20 @@ nav {
     color: #000;
     font-size: 2.5rem;
     font-weight: bolder;
-    padding: 0 2rem;
+    padding: 25px;
 
 }
 
 
-h1{
-
+.h1{
 
 text-decoration: none;
+justify-content: center;
+text-align: center;
+font-weight: bolder;
     color:#000;
-    padding: 0 1.5rem;
+    font-size: x-large;
+    padding: 20px;
 
 }
 
@@ -54,7 +57,7 @@ nav a {
 
 .headings {
 
-    color: deepskyblue;
+    color: turquoise;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bolder;
     font-size: 25px;
@@ -78,8 +81,8 @@ nav a {
 .column-left {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+   
+    align-items: center;
     color: #000;
     padding: 0rem 2rem
 
@@ -156,5 +159,9 @@ button:hover {
     font-size: 32px;
     margin-bottom: 8px;
     padding-bottom: 10px;
+    padding-left: 25px;
 }
 
+.input-div {
+    padding-left: 25px;
+}
