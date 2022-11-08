@@ -11,6 +11,12 @@ var zipSearch = function (event) {
     }
 }
 
+//results message variable
+var resultsMessage = '';
+
+//revent brewery variable
+var recentBreweries = '';
+
 //get breweries function
 var getBreweries = function (zipcode){
     console.log(zipcode);
@@ -21,17 +27,22 @@ var getBreweries = function (zipcode){
                 response.json().then(function (data){
                     console.log(data);
                     console.log(data.length);
+                    var brewNum = data.length
                     if (data.length == 0){
                         getZipInfo(zipcode);
+                        resultsMessage = 'No results in ' + zipcode + ', returning results by state';
+                    } else {
+                        resultsMessage = 'Found ' + brewNum + 'in ' + zipcode;
+                        displayBreweries(data[0]);
                     }
                     //console.log(data[0].name);
-                    displayBreweries(data[0]);
-                    getZipInfo(zipcode);
+                    
                 });
             }
         })
 }
 
+//if zip code has no results, lookup by state name
 var getBreweryByState = function (state) {
     console.log(state);
     var stateBrewerySearchApiUrl = 'https://api.openbrewerydb.org/breweries?by_state=' + state;
@@ -51,9 +62,20 @@ var breweryResults = $("#brewery-results").append("<div>");
 
 //display brewery results
 var displayBreweries = function (brewData) {
-    var breweryName = $("<div>");
-    breweryResults.append(breweryName);
-    breweryName.html(brewData.name);
+    console.log(brewData);
+    var breweryNameResult = $("<h3>");
+    var breweryWebsiteResult = $("<div>");
+    var breweryPhoneResult = $("<div>");
+
+    breweryResults.append(breweryNameResult);
+    breweryResults.append(breweryWebsiteResult);
+    breweryResults.append(breweryPhoneResult);
+
+    breweryNameResult.html(brewData.name);
+    console.log(brewData.name);
+    breweryWebsiteResult.html('<a href="' + brewData.website_url + '">Link to website</a>');
+    breweryPhoneResult.html('<b>Phone: </b>' + brewData.phone);
+
 }
 
 //get state from IP
@@ -71,6 +93,23 @@ var getZipInfo = function (zipcode) {
         })
 }
 
+//save recent brewery
+var saveBrewery = function (breweryArray) {
+    localStorage.setItem("recentBreweries", JSON.stringify(breweryArray));
+}
+
+//check storage on page load
+function setRecentBreweries () {
+    var storedBreweries = JSON.parse(localStorage.getIem("recentBreweries"));
+
+    if (storedBreweries !== null) {
+        recentBreweries = storedBreweries;
+    }
+    console.log(recentBreweries);
+    //will create display recent here
+}
 
 
 $("#zip-button").on('click', zipSearch);
+
+setRecentBreweries ();
