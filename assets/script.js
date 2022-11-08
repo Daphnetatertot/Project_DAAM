@@ -1,9 +1,10 @@
 //get zip code from button
 var zipInput = $("input");
-
+console.log(zipInput)
 var zipSearch = function (event) {
     event.preventDefault();
     var zipResult = zipInput.val();
+    console.log("button click")
     console.log(zipResult);
     if (zipResult) {
         getBreweries(zipResult);
@@ -46,7 +47,7 @@ var getBreweryByState = function (state) {
 }
 
 
-var breweryResults = $("body").append("<div>");
+var breweryResults = $("#brewery-results").append("<div>");
 
 //display brewery results
 var displayBreweries = function (brewData) {
