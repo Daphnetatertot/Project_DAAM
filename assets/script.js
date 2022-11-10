@@ -100,7 +100,7 @@ var saveBrewery = function (breweryArray) {
 
 //check storage on page load
 function setRecentBreweries () {
-    var storedBreweries = JSON.parse(localStorage.getIem("recentBreweries"));
+    var storedBreweries = JSON.parse(localStorage.getItem("recentBreweries"));
 
     if (storedBreweries !== null) {
         recentBreweries = storedBreweries;
