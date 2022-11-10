@@ -16,7 +16,7 @@ var resultsMessage = '';
 
 
 //revent brewery variable
-var recentBreweries = '';
+var savedBreweries = {};
 
 //get breweries function
 var getBreweries = function (zipcode){
@@ -53,7 +53,7 @@ var getBreweryByState = function (state) {
             if (response.ok) {
                 response.json().then(function (data) {
                     console.log(data[0]);
-                    displayBreweries(data[0]);
+                    displayBreweries(data);
                 })
                 
             }
@@ -69,18 +69,25 @@ var displayBreweries = function (brewData) {
 
 for (
     var i=0; i<brewData.length; i++) {
+        var resultsBox = $('<div class="box" id = "brewery' + i +  '" </div>');
         var breweryNameResult = $("<h3>");
         var breweryWebsiteResult = $("<div>");
         var breweryPhoneResult = $("<div>");
+        var saveButton = $('<button class="button">Save</button>');
     
-        breweryResults.append(breweryNameResult);
-        breweryResults.append(breweryWebsiteResult);
-        breweryResults.append(breweryPhoneResult);
+        breweryResults.append(resultsBox);
+        resultsBox.append(breweryNameResult);
+        resultsBox.append(breweryWebsiteResult);
+        resultsBox.append(breweryPhoneResult);
+        resultsBox.append(saveButton);
     
-        breweryNameResult.html(brewData[i].name);
+        breweryNameResult.html('<b>' + brewData[i].name + '</b>');
         console.log(brewData[i].name);
         breweryWebsiteResult.html('<a href="' + brewData[i].website_url + '">Link to website</a>');
         breweryPhoneResult.html('<b>Phone: </b>' + brewData[i].phone);
+        resultsBox.attr("data-brewName", brewData[i].name);
+        resultsBox.attr("data-brewUrl", brewData[i].website_url);
+        resultsBox.attr("data-brewPhone", brewData[i].phone);
 
     }
    
@@ -103,22 +110,25 @@ var getZipInfo = function (zipcode) {
 }
 
 //save recent brewery
-var saveBrewery = function (breweryArray) {
-    localStorage.setItem("recentBreweries", JSON.stringify(breweryArray));
+var saveBrewery = function (breweryObject) {
+    localStorage.setItem("savedBreweries", JSON.stringify(breweryObject));
 }
 
+//click event for save button
+
+
 //check storage on page load
-function setRecentBreweries () {
-    var storedBreweries = JSON.parse(localStorage.getItem("recentBreweries"));
+function setSavedBreweries () {
+    var storedBreweries = JSON.parse(localStorage.getIem("savedBreweries"));
 
     if (storedBreweries !== null) {
-        recentBreweries = storedBreweries;
+        savedBreweries = storedBreweries;
     }
-    console.log(recentBreweries);
+    console.log(savedBreweries);
     //will create display recent here
 }
 
 
 $("#zip-button").on('click', zipSearch);
 
-setRecentBreweries ();
+//setSavedBreweries ();
