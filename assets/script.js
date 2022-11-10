@@ -14,6 +14,7 @@ var zipSearch = function (event) {
 //results message variable
 var resultsMessage = '';
 
+
 //revent brewery variable
 var recentBreweries = '';
 
@@ -33,9 +34,10 @@ var getBreweries = function (zipcode){
                         resultsMessage = 'No results in ' + zipcode + ', returning results by state';
                     } else {
                         resultsMessage = 'Found ' + brewNum + 'in ' + zipcode;
-                        displayBreweries(data[0]);
+                        displayBreweries(data);
                     }
-                    //console.log(data[0].name);
+                        
+                  console.log(data.name);
                     
                 });
             }
@@ -53,6 +55,7 @@ var getBreweryByState = function (state) {
                     console.log(data[0]);
                     displayBreweries(data[0]);
                 })
+                
             }
         })
 }
@@ -63,18 +66,24 @@ var breweryResults = $("#brewery-results").append("<div>");
 //display brewery results
 var displayBreweries = function (brewData) {
     console.log(brewData);
-    var breweryNameResult = $("<h3>");
-    var breweryWebsiteResult = $("<div>");
-    var breweryPhoneResult = $("<div>");
 
-    breweryResults.append(breweryNameResult);
-    breweryResults.append(breweryWebsiteResult);
-    breweryResults.append(breweryPhoneResult);
+for (
+    var i=0; i<brewData.length; i++) {
+        var breweryNameResult = $("<h3>");
+        var breweryWebsiteResult = $("<div>");
+        var breweryPhoneResult = $("<div>");
+    
+        breweryResults.append(breweryNameResult);
+        breweryResults.append(breweryWebsiteResult);
+        breweryResults.append(breweryPhoneResult);
+    
+        breweryNameResult.html(brewData[i].name);
+        console.log(brewData[i].name);
+        breweryWebsiteResult.html('<a href="' + brewData[i].website_url + '">Link to website</a>');
+        breweryPhoneResult.html('<b>Phone: </b>' + brewData[i].phone);
 
-    breweryNameResult.html(brewData.name);
-    console.log(brewData.name);
-    breweryWebsiteResult.html('<a href="' + brewData.website_url + '">Link to website</a>');
-    breweryPhoneResult.html('<b>Phone: </b>' + brewData.phone);
+    }
+   
 
 }
 
