@@ -37,6 +37,7 @@ text-decoration: none;
 }
 
 
+
 p {
     color: #000;
     font-size: 1.5rem;
@@ -121,10 +122,10 @@ button:hover {
 }
 
 .column-right {
-    display: flex;
-    justify-content: center;
+    justify-content: flex;
     align-items: center;
     padding: 0rem 2rem;
+    margin : 0 3.5%;
 
 }
 
@@ -138,7 +139,7 @@ button:hover {
 .hero-image {
     height: 27em;
     width: 59em;
-    position: fixed;
+    object-fit: contain;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     border-top-left-radius: 50px;
