@@ -69,7 +69,7 @@ for (
         var breweryWebsiteResult = $("<div>");
         var breweryPhoneResult = $("<div>");
         var saveButton = $('<button class="button" id = "save-button">Save</button>');
-    
+        $(".column-right").removeClass("is-hidden")
         resultsBox.append(breweryNameResult);
         resultsBox.append(breweryAddressResult);
         resultsBox.append(breweryWebsiteResult);
@@ -139,3 +139,5 @@ $("#zip-button").on('click', zipSearch);
 
 
 //setSavedBreweries ();
+
+
