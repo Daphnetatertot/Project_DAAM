@@ -7,7 +7,7 @@ var zipSearch = function (event) {
     console.log("button click")
     console.log(zipResult);
     if (zipResult) {
-        getBreweries(zipResult);
+        getLatLong(zipResult);
     }
 }
 
@@ -17,38 +17,31 @@ var resultsMessage = '';
 
 //revent brewery variable
 var savedBreweries = {};
+var breweryInfoObject = {}; 
 
-//get breweries function
-var getBreweries = function (zipcode){
-    console.log(zipcode);
-    var zipBrewerySearchApiUrl = 'https://api.openbrewerydb.org/breweries?by_postal=' + zipcode;
-    fetch(zipBrewerySearchApiUrl)
+
+//get lat long from zip
+var getLatLong = function (zipcode) {
+    var getLatLongApiUrl = 'http://api.zippopotam.us/us/' + zipcode;
+    fetch(getLatLongApiUrl)
         .then(function (response) {
             if (response.ok) {
-                response.json().then(function (data){
-                    console.log(data);
-                    console.log(data.length);
-                    var brewNum = data.length
-                    if (data.length == 0){
-                        getZipInfo(zipcode);
-                        resultsMessage = 'No results in ' + zipcode + ', returning results by state';
-                    } else {
-                        resultsMessage = 'Found ' + brewNum + 'in ' + zipcode;
-                        displayBreweries(data);
-                    }
-                        
-                  console.log(data.name);
-                    
-                });
+                response.json().then(function (data) {
+                    console.log(data.places[0].latitude);
+                    var latResult = data.places[0].latitude;
+                    var longResult = data.places[0].longitude;
+                    getBreweryByLatLong(latResult, longResult);
+                })
             }
         })
 }
 
-//if zip code has no results, lookup by state name
-var getBreweryByState = function (state) {
-    console.log(state);
-    var stateBrewerySearchApiUrl = 'https://api.openbrewerydb.org/breweries?by_state=' + state;
-    fetch(stateBrewerySearchApiUrl)
+//get breweries based on lat long
+var getBreweryByLatLong = function (lat, long) {
+    console.log(lat, long);
+    var latLongBrewerySearchApiUrl = 'https://api.openbrewerydb.org/breweries?by_dist=' + lat + ',' + long + '&per_page=10';
+    console.log(latLongBrewerySearchApiUrl);
+    fetch(latLongBrewerySearchApiUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
@@ -61,7 +54,8 @@ var getBreweryByState = function (state) {
 }
 
 
-var breweryResults = $("#brewery-results").append("<div>");
+
+//var breweryResults = $("#brewery-results").append("<div>");
 
 //display brewery results
 var displayBreweries = function (brewData) {
@@ -69,52 +63,64 @@ var displayBreweries = function (brewData) {
 
 for (
     var i=0; i<brewData.length; i++) {
-        var resultsBox = $('<div class="box" id = "brewery' + i +  '" </div>');
+        var resultsBox = $('#brewery-result-'+[i]);
         var breweryNameResult = $("<h3>");
+        var breweryAddressResult = $("<div>");
         var breweryWebsiteResult = $("<div>");
         var breweryPhoneResult = $("<div>");
-        var saveButton = $('<button class="button">Save</button>');
+        var saveButton = $('<button class="button" id = "save-button">Save</button>');
     
-        breweryResults.append(resultsBox);
         resultsBox.append(breweryNameResult);
+        resultsBox.append(breweryAddressResult);
         resultsBox.append(breweryWebsiteResult);
         resultsBox.append(breweryPhoneResult);
         resultsBox.append(saveButton);
     
         breweryNameResult.html('<b>' + brewData[i].name + '</b>');
         console.log(brewData[i].name);
-        breweryWebsiteResult.html('<a href="' + brewData[i].website_url + '">Link to website</a>');
-        breweryPhoneResult.html('<b>Phone: </b>' + brewData[i].phone);
+        if (brewData[i].street == null) {
+            breweryAddressResult.html('<b>Address: </b> Not available');
+        } else {
+            breweryAddressResult.html('<b>Address: </b>' + brewData[i].street + '. ' + brewData[i].city + ', ' + brewData[i].state + ' ' + brewData[i].postal_code);
+        }
+        
+        if (brewData[i].website_url == null) {
+            breweryWebsiteResult.html('<b>Website: </b>Not available');
+        } else {
+            breweryWebsiteResult.html('<b>Website: </b><a href="' + brewData[i].website_url + '">' + brewData[i].website_url + '</a>');
+        }
+        
+        if (brewData[i].phone == null) {
+            breweryPhoneResult.html('<b>Phone: </b>Not available');
+        } else {
+            breweryPhoneResult.html('<b>Phone: </b>' + brewData[i].phone);
+        }
+        
         resultsBox.attr("data-brewName", brewData[i].name);
         resultsBox.attr("data-brewUrl", brewData[i].website_url);
         resultsBox.attr("data-brewPhone", brewData[i].phone);
-
+        breweryInfoObject = {
+            breweryName: brewData[i].name,
+            breweryUrl: brewData[i].website_url,
+            breweryPhone: brewData[i].phone
+        }
+        //click event for save button
+        $("#save-button").on('click', function() {
+        localStorage.setItem("savedBreweries", JSON.stringify(breweryInfoObject));
+        })
     }
    
 
 }
 
-//get state from IP
-var getZipInfo = function (zipcode) {
-    var getZipApiUrl = 'http://api.zippopotam.us/us/' + zipcode;
-    fetch(getZipApiUrl)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    console.log(data.places[0].state);
-                    var stateResult = data.places[0].state;
-                    getBreweryByState(stateResult);
-                })
-            }
-        })
-}
+
 
 //save recent brewery
 var saveBrewery = function (breweryObject) {
     localStorage.setItem("savedBreweries", JSON.stringify(breweryObject));
 }
 
-//click event for save button
+
 
 
 //check storage on page load
@@ -130,5 +136,6 @@ function setSavedBreweries () {
 
 
 $("#zip-button").on('click', zipSearch);
+
 
 //setSavedBreweries ();
