@@ -69,13 +69,14 @@ nav a {
 
 
 .hero {
-    background: rgb(28,74,90)
+    background: rgb(28,74,90);
 }
 
 
 .hero-container {
+    overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 48%;
     height: 95vh;
     padding: 1rem calc((100vw-1200px) / 2);
     
@@ -89,7 +90,7 @@ nav a {
     justify-content: center;
     align-items: left;
     color: #000;
-    padding: 0rem 2rem
+    padding: 0rem 2rem;
 
 }
 
@@ -144,9 +145,7 @@ button:hover {
 
 .hero-image {
     height: 27em;
-
     width: 59em;
-
     object-fit: contain;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
@@ -188,4 +187,14 @@ button:hover {
 .button-separate {
 
     padding-top: 8px;
+}
+
+.column {
+
+    overflow-y: scroll;
+    
+
+}
+.column::-webkit-scrollbar {
+    display: none;
 }
