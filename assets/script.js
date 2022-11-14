@@ -18,7 +18,7 @@ var savedBreweries = [];
 
 //get lat long from zip
 var getLatLong = function (zipcode) {
-    var getLatLongApiUrl = 'http://api.zippopotam.us/us/' + zipcode;
+    var getLatLongApiUrl = 'https://api.zippopotam.us/us/' + zipcode;
     fetch(getLatLongApiUrl)
         .then(function (response) {
             if (response.ok) {
