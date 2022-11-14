@@ -32,6 +32,7 @@ var getLatLong = function (zipcode) {
         })
 }
 
+
 //get breweries based on lat long
 var getBreweryByLatLong = function (lat, long) {
     console.log(lat, long);
@@ -164,7 +165,7 @@ var displaySavedBreweries = function (savedBrews) {
             var savedBreweriesSection = $("#saved-box-" + [i]);
             var savedBreweryInfo = savedBreweriesSection.children("#saved-brew-info");
             savedBreweriesSection.attr('class', 'box');
-            savedBreweryInfo.html('<b>See on Google Maps: </b><a href="http://maps.google.com/#!q=' + savedBrews[i].savedBreweryName + savedBrews[i].savedBreweryAddress + '">' + savedBrews[i].savedBreweryName + '</a>');
+            savedBreweryInfo.html('<b>See on Google Maps: </b><a href="https://maps.google.com/#!q=' + savedBrews[i].savedBreweryName + savedBrews[i].savedBreweryAddress + '">' + savedBrews[i].savedBreweryName + '</a>');
 
             console.log(savedBrews[i].savedBreweryName);
         }
