@@ -1,13 +1,15 @@
 ## Beer Buddy
 
 ## Description
-- Beer Buddy is a simple to use local brewery locator that finds all the breweries within the zip code searched. 
-- For example: If you're in South Beach, Miami you'd input 33133 which would return all breweries listed in that zipcode.
-- If no results are found for your zip code, the website then runs your state and returns an alphabetical list of breweries in the state.
--  For example: If you're in Beverly Hills, you'd input 90210 which would return all breweries in the state because there isn't one psecific to that area code 
-- The response displays the brewery name, phone number, and a link to their website. 
+- Beer Buddy is a simple to use local brewery locator that displays the top 10 breweries searched within a zipcode.  
+- It is used to quickly locate breweries near you, displaying address, website, and even phone number!
+- We use two API's, one to pull latitude and lingitude coordinates from the zip code entered
+- the second one is used to locate the 10 closest breweries to that latitude/longitude
+- Once displayed, the user has the ability to save up to 5 breweries to their favorites list for next time!
 
 ## Roadmap
-- In the future, we plan on adding a feature that allows you to teleport from wherever you are at that moment, to whichever brewery you select.
-- This of course, once the technology is invented (:
+- Eventually there will be a "view more options" button, on the off chance that none of the 10 already displayed just don't suffice, or you've already been to them all!
 
+##
+- Without Further Ado:
+- https://daphnetatertot.github.io/Project_DAAM/
