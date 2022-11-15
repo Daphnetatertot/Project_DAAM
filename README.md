@@ -3,9 +3,10 @@
 ## Description
 - Beer Buddy is a simple to use local brewery locator that displays the top 10 breweries searched within a zipcode.  
 - It is used to quickly locate breweries near you, displaying address, website, and even phone number!
-- We use two API's, one to pull latitude and lingitude coordinates from the zip code entered
-- the second one is used to locate the 10 closest breweries to that latitude/longitude
+- We use two API's, one to pull latitude and lingitude coordinates from the zip code entered called zipopotam.us
+- the second one is used to locate the 10 closest breweries to that latitude/longitude called openbrewerydb
 - Once displayed, the user has the ability to save up to 5 breweries to their favorites list for next time!
+- Our CSS framework choice was Bulma
 
 ![Screen shot of main section of website](images/beerbuddyss.png)
 
@@ -19,3 +20,5 @@
 ##
 Without Further Ado:
 - [Link To Page](https://daphnetatertot.github.io/Project_DAAM/)
+
+### Authors: Daphne Tate, Anthony Reedy, and Martin Cespedes
